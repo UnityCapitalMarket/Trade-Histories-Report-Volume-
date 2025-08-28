@@ -107,22 +107,6 @@ python app/export_trade_histories.py ... --jsonl
 
 ---
 
-## Biến môi trường (tuỳ chọn)
-
-Có thể cấu hình qua ENV thay vì arguments:
-
-```
-DB_HOST=localhost
-DB_PORT=3306
-DB_USER=root
-DB_PASSWORD=123456
-DB_NAME=mt4_db
-```
-
-File `.env.example` minh hoạ các biến trên.
-
----
-
 ## Layout bắt buộc (cột phải có trong kết quả SELECT)
 
 ```
