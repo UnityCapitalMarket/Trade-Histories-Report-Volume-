@@ -1,15 +1,15 @@
 # file: app/trade_fetcher.py
 """
-PSEUDOCODE PLAN (VII):
-1) Chuyển đổi BigIntHumanReadable <-> datetime UTC (length 14/17; sentinel 0/19700101000000000 -> None).
-2) Dataclass TradeRecord ánh xạ 1-1 với bảng TradeHistories; thêm is_closed.
-3) Hai chế độ truy vấn:
-   a) Filter mode (tham số CLI) giống bản trước.
-   b) RAW SQL mode: nhận "SELECT ..." từ --sql hoặc --sql-file, bắt buộc trả về đầy đủ cột theo layout, parse & xuất CSV.
-   - Chặn lệnh không phải SELECT.
-   - Kiểm tra đủ cột bắt buộc; báo thiếu nếu không khớp.
-4) Xuất CSV chuẩn UTF-8, datetime -> ISO8601Z; hoặc JSON lines.
-5) CLI: kết nối MySQL từ args/env; chọn 1 trong 2 mode; ví dụ lệnh ở cuối file.
+PSEUDOCODE PLAN (ENGLISH):
+1) Convert BigIntHumanReadable <-> datetime UTC (length 14/17; sentinel 0/19700101000000000 -> None).
+2) Dataclass TradeRecord maps 1-to-1 with the TradeHistories table; add is_closed.
+3) Two query modes:
+   a) Filter mode (CLI parameters) same as previous version.
+   b) RAW SQL mode: accepts "SELECT ..." from --sql or --sql-file, must return all columns as per layout, parse & export CSV.
+   - Block non-SELECT statements.
+   - Check for all required columns; report missing if not matched.
+4) Export standard UTF-8 CSV, datetime -> ISO8601Z; or JSON lines.
+5) CLI: connect to MySQL from args/env; choose one of two modes; example commands at end of file.
 """
 
 from __future__ import annotations
